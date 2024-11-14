@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+
+<h2>Plano Financeiro</h2>
+<form action="/plano-financeiro/<%= id_empresa %>" method="POST">
+  <div class="mb-3">
+    <label for="investimento_inicial" class="form-label">Investimento Inicial (R$)</label>
+    <input type="number" step="0.01" class="form-control" id="investimento_inicial" name="investimento_inicial" required>
+  </div>
+  <div class="mb-3">
+    <label for="custos_fixos" class="form-label">Custos Fixos Mensais (R$)</label>
+    <input type="number" step="0.01" class="form-control" id="custos_fixos" name="custos_fixos" required>
+  </div>
+  <div class="mb-3">
+    <label for="custos_variaveis" class="form-label">Custos Variáveis Mensais (R$)</label>
+    <input type="number" step="0.01" class="form-control" id="custos_variaveis" name="custos_variaveis" required>
+  </div>
+  <div class="mb-3">
+    <label for="receitas_previstas" class="form-label">Receitas Previstas Mensais (R$)</label>
+    <input type="number" step="0.01" class="form-control" id="receitas_previstas" name="receitas_previstas" required>
+  </div>
+  <div class="mb-3">
+    <label for="lucro_estimado" class="form-label">Lucro Estimado Mensal (R$)</label>
+    <input type="number" step="0.01" class="form-control" id="lucro_estimado" name="lucro_estimado" readonly>
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar e Continuar</button>
+</form>
+
+<script>
+  // Cálculo automático do lucro estimado
+  function calcularLucro() {
+    const receitas = parseFloat(document.getElementById('receitas_previstas').value) || 0;
+    const custosFixes = parseFloat(document.getElementById('custos_fixos').value) || 0;
+    const custosVariaveis = parseFloat(document.getElementById('custos_variaveis').value) || 0;
+    const lucro = receitas - custosFixes - custosVariaveis;
+    document.getElementById('lucro_estimado').value = lucro.toFixed(2);
+  }
+
+  document.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('input', calcularLucro);
+  });
+</script>
+
+<%- include('partials/footer') %>

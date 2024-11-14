@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<h2>Rede de Atividades</h2>
+<form action="/rede-atividades/<%= id_empresa %>" method="POST">
+  <div class="mb-3">
+    <label for="descricao" class="form-label">Descrição Geral</label>
+    <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="atividade_principal" class="form-label">Atividade Principal</label>
+    <input type="text" class="form-control" id="atividade_principal" name="atividade_principal" required>
+  </div>
+  <div class="mb-3">
+    <label for="atividades_auxiliares" class="form-label">Atividades Auxiliares</label>
+    <textarea class="form-control" id="atividades_auxiliares" name="atividades_auxiliares" rows="3" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="responsaveis" class="form-label">Responsáveis</label>
+    <input type="text" class="form-control" id="responsaveis" name="responsaveis" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar e Continuar</button>
+</form>
+
+<%- include('partials/footer') %>

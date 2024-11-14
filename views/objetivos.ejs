@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<h2>Objetivos do Plano de Negócios</h2>
+<form action="/objetivos/<%= id_empresa %>" method="POST">
+  <div id="objetivos-container">
+    <div class="mb-3">
+      <label for="objetivo1" class="form-label">Objetivo 1</label>
+      <input type="text" class="form-control" id="objetivo1" name="objetivos[]" required>
+    </div>
+  </div>
+  <button type="button" class="btn btn-secondary mb-3" id="add-objetivo">Adicionar Objetivo</button>
+  <button type="submit" class="btn btn-primary">Finalizar Plano de Negócios</button>
+</form>
+
+<script>
+  let objetivoCount = 1;
+  const addObjetivo = document.getElementById('add-objetivo');
+  const container = document.getElementById('objetivos-container');
+
+  addObjetivo.addEventListener('click', () => {
+    objetivoCount++;
+    const newObjetivo = document.createElement('div');
+    newObjetivo.className = 'mb-3';
+    newObjetivo.innerHTML = `
+      <label for="objetivo${objetivoCount}" class="form-label">Objetivo ${objetivoCount}</label>
+      <input type="text" class="form-control" id="objetivo${objetivoCount}" name="objetivos[]" required>
+    `;
+    container.appendChild(newObjetivo);
+  });
+</script>
+
+<%- include('partials/footer') %>

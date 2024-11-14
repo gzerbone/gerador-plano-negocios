@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<h2>Plano Operacional</h2>
+<form action="/plano-operacional/<%= id_empresa %>" method="POST">
+  <div class="mb-3">
+    <label for="descricao_atividade" class="form-label">Descrição da Atividade</label>
+    <textarea class="form-control" id="descricao_atividade" name="descricao_atividade" rows="3" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="equipamentos" class="form-label">Equipamentos Necessários</label>
+    <input type="text" class="form-control" id="equipamentos" name="equipamentos" required>
+  </div>
+  <div class="mb-3">
+    <label for="pessoal_envolvido" class="form-label">Pessoal Envolvido</label>
+    <input type="text" class="form-control" id="pessoal_envolvido" name="pessoal_envolvido" required>
+  </div>
+  <div class="mb-3">
+    <label for="localizacao" class="form-label">Localização</label>
+    <input type="text" class="form-control" id="localizacao" name="localizacao" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar e Continuar</button>
+</form>
+
+<%- include('partials/footer') %>

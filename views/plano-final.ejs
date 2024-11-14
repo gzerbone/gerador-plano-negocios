@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+
+<%
+function formatarNumero(valor) {
+  return typeof valor === 'number' ? valor.toFixed(2) : '0.00';
+}
+%>
+
+<h2>Plano de Negócios Final</h2>
+
+<div class="card">
+  <div class="card-header">Informações da Empresa</div>
+  <div class="card-body">
+    <% if (planoNegocio.Empresa) { %>
+      <div class="info-item"><strong>Nome:</strong> <%= planoNegocio.Empresa.nome %></div>
+      <div class="info-item"><strong>CNPJ:</strong> <%= planoNegocio.Empresa.cnpj %></div>
+      <div class="info-item"><strong>Missão:</strong> <%= planoNegocio.Empresa.missao %></div>
+      <div class="info-item"><strong>Endereço:</strong> <%= planoNegocio.Empresa.endereco %></div>
+      <div class="info-item"><strong>Telefone:</strong> <%= planoNegocio.Empresa.telefone %></div>
+    <% } else { %>
+      <p>Informações da empresa não disponíveis.</p>
+    <% } %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Plano Financeiro</div>
+  <div class="card-body">
+    <% if (planoNegocio.PlanoFinanceiro) { %>
+      <div class="info-item"><strong>Investimento Inicial:</strong> R$ <%= formatarNumero(planoNegocio.PlanoFinanceiro.investimento_inicial) %></div>
+      <div class="info-item"><strong>Custos Fixos Mensais:</strong> R$ <%= formatarNumero(planoNegocio.PlanoFinanceiro.custos_fixos) %></div>
+      <div class="info-item"><strong>Custos Variáveis Mensais:</strong> R$ <%= formatarNumero(planoNegocio.PlanoFinanceiro.custos_variaveis) %></div>
+      <div class="info-item"><strong>Receitas Previstas Mensais:</strong> R$ <%= formatarNumero(planoNegocio.PlanoFinanceiro.receitas_previstas) %></div>
+      <div class="info-item"><strong>Lucro Estimado Mensal:</strong> R$ <%= formatarNumero(planoNegocio.PlanoFinanceiro.lucro_estimado) %></div>
+    <% } else { %>
+      <p>Informações do plano financeiro não disponíveis.</p>
+    <% } %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Plano Operacional</div>
+  <div class="card-body">
+    <% if (planoNegocio.PlanoOperacional) { %>
+      <div class="info-item"><strong>Descrição da Atividade:</strong> <%= planoNegocio.PlanoOperacional.descricao_atividade %></div>
+      <div class="info-item"><strong>Equipamentos:</strong> <%= planoNegocio.PlanoOperacional.equipamentos %></div>
+      <div class="info-item"><strong>Pessoal Envolvido:</strong> <%= planoNegocio.PlanoOperacional.pessoal_envolvido %></div>
+      <div class="info-item"><strong>Localização:</strong> <%= planoNegocio.PlanoOperacional.localizacao %></div>
+    <% } else { %>
+      <p>Informações do plano operacional não disponíveis.</p>
+    <% } %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Rede de Atividades</div>
+  <div class="card-body">
+    <% if (planoNegocio.RedeAtividades) { %>
+      <div class="info-item"><strong>Descrição Geral:</strong> <%= planoNegocio.RedeAtividades.descricao %></div>
+      <div class="info-item"><strong>Atividade Principal:</strong> <%= planoNegocio.RedeAtividades.atividade_principal %></div>
+      <div class="info-item"><strong>Atividades Auxiliares:</strong> <%= planoNegocio.RedeAtividades.atividades_auxiliares %></div>
+      <div class="info-item"><strong>Responsáveis:</strong> <%= planoNegocio.RedeAtividades.responsaveis %></div>
+    <% } else { %>
+      <p>Informações da rede de atividades não disponíveis.</p>
+    <% } %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Objetivos</div>
+  <div class="card-body">
+    <% if (planoNegocio.Objetivos && planoNegocio.Objetivos.length > 0) { %>
+      <ul>
+        <% planoNegocio.Objetivos.forEach(objetivo => { %>
+          <li><%= objetivo.descricao %></li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>Nenhum objetivo definido.</p>
+    <% } %>
+  </div>
+</div>
+
+<div class="text-center mt-4 mb-4">
+  <button onclick="window.print()" class="btn btn-primary btn-lg">Imprimir Plano de Negócios</button>
+</div>
+
+<%- include('partials/footer') %>
